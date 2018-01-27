@@ -494,5 +494,5 @@ Int_t CrystalGeometry::GetSegmentNumber(Double_t xx, Double_t yy, Double_t zz) {
   } 
   Int_t segment = (layer*6) + wedge;
   
-  return segment;
+  return layer;
 }

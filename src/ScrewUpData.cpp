@@ -509,6 +509,8 @@ void SetSegmentNumbers(CrystalGeometry *crystal) {
   for (int i=0; i<MAX_INTPTS; i++) {
     if (g2.intpts[i].e > 0) {
       Int_t newSeg = crystal->GetSegmentNumber(g2.intpts[i].x, g2.intpts[i].y, g2.intpts[i].z);
+      newSeg *= 6;
+      newSeg += g2.intpts[i].seg%6;
       if (g2.intpts[i].seg != newSeg) {
 	if (DEBUG) { 
 	  cout << "New segment for " << i << ": was " << g2.intpts[i].seg 
@@ -825,7 +827,7 @@ void ConsolidateToSegmentCenters(Int_t ct) {
 
 void PrintHelpInformation(char *argv[]) {
   cout << "Usage: " << argv[0] << " <usageFlags> -fIn <inputFileName> -fOut <outputFileName> " << endl;
-  cout << "    Valid usage flags: -fSet <setFileName> (not yet implemented)" << endl;
+  cout << "    Valid usage flags: -fSet <setFileName>" << endl;
 };
 
 void PrintIntPts(Int_t num) {
